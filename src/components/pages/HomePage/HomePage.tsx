@@ -1,5 +1,7 @@
 import React from 'react';
-import backgroundImage from '../../assets/home-img.png';
+import backgroundImage from '../../../assets/home-img.png';
+
+import './home_page.css';
 
 const HomePage: React.FC = () => {
     return (
@@ -9,7 +11,7 @@ const HomePage: React.FC = () => {
                 <p>Предназначенный для любителей кино онлайн-ресурс представляет собой тщательно подобранный
                     список фильмов, которые должен посмотреть каждый</p>
             </div>
-            <img className="background-image" src={backgroundImage} alt="Background"  width="1000" height="600"/>
+            <img className="background-image" src={backgroundImage} alt="Background"/>
         </div>
     );
 };
