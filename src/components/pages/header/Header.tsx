@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Link, useLocation} from 'react-router-dom';
+
+import './header.css';
 
 const Header: React.FC = () => {
     const location = useLocation();
-    if (location.pathname === '/login') {
+
+    const shouldRenderHeader = useCallback(() => location.pathname !== '/login', [location.pathname]);
+    if (!shouldRenderHeader()) {
         return null;
     }
 
