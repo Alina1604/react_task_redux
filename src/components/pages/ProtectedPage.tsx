@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import backgroundImage from '../../assets/protected-page1.png';
 
 const ProtectedPage: React.FC = () => {
+    // от any нужно по-возможности избавляться
     const username = useSelector((state: any) => state.auth.username);
 
     return (

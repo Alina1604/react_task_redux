@@ -25,6 +25,19 @@ export const loginReducer = (state = initialAuthState, action: AnyAction): AuthS
     }
 };
 
+
+// следует разделять функциональные части друг от друга, 
+// в данном случае два редьюсера занимаются разныеми задачами, 
+// а значит их точно необходимо разъеденить по соответствующим файлам: `store/reducers/paginationReducer` и `store/reducers/loginReducer`
+
+// далее эту конструкцию из App.tsx (ниже) унести в store/reducers/index.tsx:
+// const rootReducer = combineReducers({
+//     auth: loginReducer,
+//     pagination: paginationReducer,
+// });
+
+
+// для сведения: можно для названия интерфейсов использоваться префикс I (IPaginationState)
 interface PaginationState {
     currentPage: number;
     itemsPerPage: number;
