@@ -1,13 +1,21 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import {Provider} from 'react-redux';
-import store from './components/store/store'
-import Header from './components/pages/Header/Header.tsx';
-import LoginPage from './components/pages/LoginPage/LoginPage.tsx';
-import HomePage from './components/pages/HomePage/HomePage.tsx';
-import ProtectedPage from './components/pages/ProtectedPage/ProtectedPage.tsx';
-import PaginatedPage from './components/pages/PaginatedPage/PaginatedPage.tsx';
-import ProtectedRoute from "./components/routes/protectedRoute.tsx";
+import {Provider, useSelector} from 'react-redux';
+import { createStore, combineReducers } from 'redux';
+import { loginReducer, paginationReducer } from './components/store/reducer';
+import Header from './components/Header';
+import LoginPage from './components/pages/LoginPage';
+import HomePage from './components/pages/HomePage';
+import ProtectedPage from './components/pages/ProtectedPage';
+import PaginatedPage from './components/pages/PaginatedPage';
+import './index.css';
+
+const rootReducer = combineReducers({
+    auth: loginReducer,
+    pagination: paginationReducer,
+});
+
+const store = createStore(rootReducer);
 
 const App: React.FC = () => {
     return (
@@ -24,6 +32,15 @@ const App: React.FC = () => {
                 </Router>
             </Provider>
     );
+};
+
+interface ProtectedRouteProps {
+    component: React.FC;
+}
+
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ component: Component }) => {
+    const isAuthenticated = useSelector((state: any) => state.auth.isAuthenticated);
+    return isAuthenticated ? <Component /> : <Navigate to="/login" />;
 };
 
 export default App
