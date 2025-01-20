@@ -1,12 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import IRootState from "../../store/reducers/interfaces/IRootState.tsx";
-import backgroundImage from '../../../assets/protected-page1.png';
-
-import './protected_page.css';
+import backgroundImage from '../../assets/protected-page1.png';
 
 const ProtectedPage: React.FC = () => {
-    const username = useSelector((state: IRootState) => state.auth.username);
+    const username = useSelector((state: any) => state.auth.username);
 
     return (
         <div className="protected-page">
